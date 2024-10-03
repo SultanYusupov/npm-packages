@@ -1,0 +1,19 @@
+.card {
+  max-width: 250px;
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
+.card-header {
+  border-bottom: 2px solid black;
+  padding: 4px;
+}
+
+.card-content {
+  margin: 6px 0 10px 4px;
+}
+
+.download {
+  width: 13px;
+  height: 13px;
+}
