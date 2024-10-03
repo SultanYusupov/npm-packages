@@ -1,0 +1,39 @@
+.wrapper {
+  margin: 20px;
+}
+
+header {
+  margin-bottom: 10px;
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+}
+
+.card-list {
+  border: 2px dotted rgba(0, 0, 0, 0.26);
+  padding: 10px;
+  width: 100%;
+  display: inline-flex;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+.search {
+  padding-left: 2px;
+}
+
+/*.sync-icon {
+  animation-name: rotation;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotation {
+  0% {
+    transform:rotate(0deg);
+  }
+  100% {
+    transform:rotate(-360deg);
+  }
+}*/
