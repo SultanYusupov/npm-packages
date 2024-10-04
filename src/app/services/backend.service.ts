@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {IPackage} from '../interfaces/IPackage';
 
 @Injectable({
@@ -7,9 +7,8 @@ import {IPackage} from '../interfaces/IPackage';
 })
 export class BackendService {
 
-  constructor(private http: HttpClient) { }
-
   private URL: string = "http://localhost:3000";
+  http = inject(HttpClient);
 
   getPackages() {
     return this.http.get<IPackage[]>(this.URL+'/packages');
