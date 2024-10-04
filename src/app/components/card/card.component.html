@@ -1,8 +1,18 @@
-<div class="card">
-  <div class="card-header">{{packageName}}</div>
-  <div class="card-content">
-    <p>250K <span><svg class="download" viewBox="0 0 16 16" fill="currentColor" x="248.5" y="248.5" role="img" style="display:inline-block;vertical-align:initial" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><g fill="currentColor"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></g></g></svg>
+@if (package) {
+  <div class="card">
+    <div class="card-header">
+      <ng-container *ngIf="package.id.includes('/')">
+        <span style="color: red">{{(package.id | highlight).dependency}}/</span>
+        <span>{{(package.id | highlight).packageName}}</span>
+      </ng-container>
+      <ng-container *ngIf="!package.id.includes('/')">
+        <span>{{package.id}}</span>
+      </ng-container>
+    </div>
+    <div class="card-content">
+      <p>250K <span><svg class="download" viewBox="0 0 16 16" fill="currentColor" x="248.5" y="248.5" role="img" style="display:inline-block;vertical-align:initial" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><g fill="currentColor"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></g></g></svg>
     </span></p>
-    <p>8 dependencies</p>
+      <p>8 dependencies</p>
+    </div>
   </div>
-</div>
+}

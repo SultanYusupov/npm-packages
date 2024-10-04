@@ -4,8 +4,8 @@
     <i class="material-icons sync-icon" [style.cursor]="'pointer'">sync</i>
   </header>
   <div class="card-list">
-    @for (package of packages; track package) {
-      <app-card></app-card>
+    @for (package of packages; track package.id) {
+      <app-card [package]="package"></app-card>
     }
   </div>
 </div>
