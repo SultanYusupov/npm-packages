@@ -1,6 +1,5 @@
 import {
-  Component,
-  inject, OnDestroy,
+  Component, OnDestroy,
   OnInit,
 } from '@angular/core';
 import {RouterOutlet} from '@angular/router';
@@ -8,7 +7,7 @@ import {CardComponent} from './components/card/card.component';
 import {BackendService} from './services/backend.service';
 import {IPackage} from './interfaces/IPackage';
 import {AsyncPipe, NgIf} from '@angular/common';
-import {debounceTime, Subject} from 'rxjs';
+import {debounceTime, Subject, Subscription, take, takeUntil} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,13 +19,14 @@ import {debounceTime, Subject} from 'rxjs';
 export class AppComponent implements OnInit, OnDestroy{
   packages: IPackage[] = [];
   dependencies: string[] = [];
-  private mouseOverSubject = new Subject<any>();
-  hasDependencies: boolean = false;
+  private subscription$: Subscription;
+  private mouseOverSubject$ = new Subject<any>();
+  styleExp: string = '';
 
   constructor(private bs: BackendService) {
-    this.mouseOverSubject.pipe(debounceTime(2000)).subscribe(id => {
+    this.subscription$ = this.mouseOverSubject$.pipe(debounceTime(2000)).subscribe(id => {
       if (id) this.findDependencies(id);
-    })
+    });
   }
 
   ngOnInit() {
@@ -34,11 +34,12 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   onMouseLeave() {
-    this.mouseOverSubject.next('');
+    // применение метода complete() и создание нового Subject не помогло
+    this.mouseOverSubject$.next('');
   }
 
   onMouseEnter(id:string) {
-    this.mouseOverSubject.next(id);
+    this.mouseOverSubject$.next(id);
   }
 
   findDependencies(id: string) {
@@ -49,6 +50,6 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
-    this.mouseOverSubject.unsubscribe();
+    this.subscription$.unsubscribe();
   }
 }
