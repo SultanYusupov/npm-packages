@@ -1,6 +1,6 @@
 import {
   Component,
-  inject,
+  inject, OnDestroy,
   OnInit,
 } from '@angular/core';
 import {RouterOutlet} from '@angular/router';
@@ -17,8 +17,7 @@ import {debounceTime, Subject} from 'rxjs';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
-  title = 'npm-packages';
+export class AppComponent implements OnInit, OnDestroy{
   packages: IPackage[] = [];
   dependencies: string[] = [];
   bs = inject(BackendService);
@@ -48,5 +47,9 @@ export class AppComponent implements OnInit{
     this.bs.getDependencies(id).subscribe(data => {
       console.log(id, data);
     });
+  }
+
+  ngOnDestroy() {
+    this.mouseOverSubject.unsubscribe();
   }
 }
