@@ -47,8 +47,7 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   findDependencies(id: string) {
-    //TODO с сервера приходит ошибка, если id составное
-    if (id.includes('/')) return;
+    if (id.includes('/')) id = id.replace(/\//, '%2F');
     this.bs.getDependencies(id).subscribe(data => {
       for (let p of this.packages) {
         p.highlighted = data.includes(p.id);
