@@ -20,11 +20,10 @@ import {debounceTime, Subject} from 'rxjs';
 export class AppComponent implements OnInit, OnDestroy{
   packages: IPackage[] = [];
   dependencies: string[] = [];
-  bs = inject(BackendService);
   private mouseOverSubject = new Subject<any>();
   hasDependencies: boolean = false;
 
-  constructor() {
+  constructor(private bs: BackendService) {
     this.mouseOverSubject.pipe(debounceTime(2000)).subscribe(id => {
       if (id) this.findDependencies(id);
     })
