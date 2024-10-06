@@ -1,6 +1,6 @@
 @if (package) {
   <div class="card">
-    <div class="card-header">
+    <div class="card-header" [ngClass]="{'highlight-dependency': highlightDependency}">
       <ng-container *ngIf="package.id.includes('/')">
         <span style="color: rgba(255,77,0,0.94)">{{(package.id | highlight).dependency}}/</span>
         <span>{{(package.id | highlight).packageName}}</span>

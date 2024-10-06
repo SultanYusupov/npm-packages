@@ -10,6 +10,9 @@
   border-bottom: 2px solid black;
   padding: 4px;
 }
+.card-header:hover {
+  background-color: rgba(162, 188, 229, 0.63);
+}
 
 .card-content {
   margin: 6px 0 10px 4px;
@@ -18,4 +21,8 @@
 .download {
   width: 13px;
   height: 13px;
+}
+
+.highlight-dependency {
+  background-color: rgba(187, 97, 97, 0.63);
 }

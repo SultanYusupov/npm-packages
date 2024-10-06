@@ -15,6 +15,6 @@ export class BackendService {
   }
 
   getDependencies(id: string) {
-    return this.http.get<IPackage[]>(`${this.URL}/${id}/dependencies`);
+    return this.http.get<string[]>(`${this.URL}/packages/${id}/dependencies`);
   }
 }
