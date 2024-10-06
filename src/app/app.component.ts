@@ -1,6 +1,6 @@
 import {
-  Component, ElementRef, OnDestroy,
-  OnInit, QueryList, ViewChildren,
+  Component, OnDestroy,
+  OnInit,
 } from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {CardComponent} from './components/card/card.component';
@@ -21,9 +21,6 @@ export class AppComponent implements OnInit, OnDestroy{
   dependencies: string[] = [];
   private subscription$: Subscription;
   private mouseOverSubject$ = new Subject<any>();
-  styleExp: boolean = false;
-  @ViewChildren('cards') cards!: QueryList<ElementRef>;
-  hoveredIndex: number | null = null;
   private originalPackages: IPackage[] = [];
 
   constructor(private bs: BackendService) {
@@ -47,10 +44,6 @@ export class AppComponent implements OnInit, OnDestroy{
 
   onMouseEnter(id:string) {
     this.mouseOverSubject$.next(id);
-  }
-
-  onCardHover(index: number, isHovered: boolean) {
-    this.hoveredIndex = isHovered ? index : null;
   }
 
   findDependencies(id: string) {

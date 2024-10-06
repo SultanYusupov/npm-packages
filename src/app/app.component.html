@@ -5,7 +5,7 @@
   </header>
   <div class="card-list">
     @for (package of packages; track package.id; let i = $index) {
-      <app-card #cards [package]="package" (mouseenter)="onMouseEnter(package.id)" (mouseleave)="onMouseLeave()" [highlighted]="package.highlighted"></app-card>
+      <app-card [package]="package" (mouseenter)="onMouseEnter(package.id)" (mouseleave)="onMouseLeave()" [highlighted]="package.highlighted"></app-card>
     }
   </div>
 </div>

@@ -20,7 +20,5 @@ import {ConversionCountPipe} from '../../pipes/conversion-count.pipe';
 })
 export class CardComponent{
   @Input() package!: IPackage;
-  @Input() styleExp: boolean = false;
   @Input() highlighted?: boolean = false;
-  @Output() hoverEvent = new EventEmitter<boolean>();
 }
