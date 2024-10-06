@@ -8,7 +8,7 @@ import {CardComponent} from './components/card/card.component';
 import {BackendService} from './services/backend.service';
 import {IPackage} from './interfaces/IPackage';
 import {AsyncPipe, NgIf} from '@angular/common';
-import {debounceTime, Subject, switchMap} from 'rxjs';
+import {debounceTime, Subject} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -23,12 +23,12 @@ export class AppComponent implements OnInit{
   dependencies: string[] = [];
   bs = inject(BackendService);
   private mouseOverSubject = new Subject<any>();
-  // @ViewChildren('card') card!: QueryList<ElementRef>;
+  hasDependencies: boolean = false;
 
   constructor() {
-    this.mouseOverSubject.pipe(debounceTime(2000), switchMap(async (id) => {
-      if (id) this.findDependencies(id)
-    })).subscribe()
+    this.mouseOverSubject.pipe(debounceTime(2000)).subscribe(id => {
+      if (id) this.findDependencies(id);
+    })
   }
 
   ngOnInit() {
@@ -40,7 +40,6 @@ export class AppComponent implements OnInit{
   }
 
   onMouseEnter(id:string) {
-    // this.mouseOverSubject.pipe(debounceTime(1500)).subscribe(id => this.findDependencies(id));
     this.mouseOverSubject.next(id);
   }
 

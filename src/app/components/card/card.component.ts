@@ -19,4 +19,5 @@ import {ConversionCountPipe} from '../../pipes/conversion-count.pipe';
 })
 export class CardComponent {
   @Input() package!: IPackage;
+  @Input() highlightDependency: boolean = false;
 }
