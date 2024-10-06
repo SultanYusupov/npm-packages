@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {IPackage} from '../../interfaces/IPackage';
 import {HighlightPipe} from '../../pipes/highlight.pipe';
-import {NgClass, NgIf} from '@angular/common';
+import {NgClass, NgIf, NgStyle} from '@angular/common';
 import {ConversionCountPipe} from '../../pipes/conversion-count.pipe';
 
 @Component({
@@ -11,13 +11,16 @@ import {ConversionCountPipe} from '../../pipes/conversion-count.pipe';
     NgIf,
     HighlightPipe,
     ConversionCountPipe,
-    NgClass
+    NgClass,
+    NgStyle
   ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
   changeDetection:  ChangeDetectionStrategy.OnPush
 })
-export class CardComponent {
+export class CardComponent{
   @Input() package!: IPackage;
-  @Input() highlightDependency: boolean = false;
+  @Input() styleExp: boolean = false;
+  @Input() highlighted?: boolean = false;
+  @Output() hoverEvent = new EventEmitter<boolean>();
 }

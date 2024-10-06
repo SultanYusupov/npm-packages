@@ -3,9 +3,9 @@
     <input type="search" placeholder="Поиск..." class="search"/>
     <i class="material-icons sync-icon" [style.cursor]="'pointer'">sync</i>
   </header>
-  <div #card class="card-list">
+  <div class="card-list">
     @for (package of packages; track package.id; let i = $index) {
-      <app-card  [package]="package" (mouseenter)="onMouseEnter(package.id)" (mouseleave)="onMouseLeave()" [highlightDependency]="hasDependencies"></app-card>
+      <app-card #cards [package]="package" (mouseenter)="onMouseEnter(package.id)" (mouseleave)="onMouseLeave()" [highlighted]="package.highlighted"></app-card>
     }
   </div>
 </div>
