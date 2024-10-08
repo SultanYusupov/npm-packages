@@ -22,6 +22,7 @@ export class AppComponent implements OnInit, OnDestroy{
   private subscription$: Subscription;
   private mouseOverSubject$ = new Subject<any>();
   private originalPackages: IPackage[] = [];
+  filterValue: string = '';
 
   constructor(private bs: BackendService) {
     this.subscription$ = this.mouseOverSubject$.pipe(debounceTime(100)).subscribe(id => {
@@ -53,6 +54,17 @@ export class AppComponent implements OnInit, OnDestroy{
         p.highlighted = data.includes(p.id);
       }
     });
+  }
+
+  filter($event: Event) {
+    this.filterValue = ($event.target as HTMLInputElement).value.trim();
+    if (($event.target as HTMLInputElement).value) {
+      this.packages = this.originalPackages;
+    }
+  }
+
+  isFiltered(p: any):boolean {
+    return p.id.toLowerCase().includes(this.filterValue.toLowerCase());
   }
 
   ngOnDestroy() {

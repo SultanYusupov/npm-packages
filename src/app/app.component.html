@@ -1,11 +1,13 @@
 <div class="wrapper">
   <header>
-    <input type="search" placeholder="Поиск..." class="search"/>
+    <input type="search" placeholder="Поиск..." class="search" (input)="filter($event)"/>
     <i class="material-icons sync-icon" [style.cursor]="'pointer'">sync</i>
   </header>
   <div class="card-list">
     @for (package of packages; track package.id; let i = $index) {
-      <app-card [package]="package" (mouseenter)="onMouseEnter(package.id)" (mouseleave)="onMouseLeave()" [highlighted]="package.highlighted"></app-card>
+      <ng-container *ngIf="isFiltered(package)">
+        <app-card [package]="package" (mouseenter)="onMouseEnter(package.id)" (mouseleave)="onMouseLeave()" [highlighted]="package.highlighted"></app-card>
+      </ng-container>
     }
   </div>
 </div>
