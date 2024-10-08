@@ -1,8 +1,5 @@
 <div class="wrapper">
-  <header>
-    <input type="search" placeholder="Поиск..." class="search" (input)="filter($event)"/>
-    <i class="material-icons sync-icon" [style.cursor]="'pointer'">sync</i>
-  </header>
+    <app-header (filterValue)="filter($event)"></app-header>
   <div class="card-list">
     @for (package of packages; track package.id; let i = $index) {
       <ng-container *ngIf="isFiltered(package)">

@@ -2,13 +2,6 @@
   margin: 20px;
 }
 
-header {
-  margin-bottom: 10px;
-  display: flex;
-  width: 200px;
-  justify-content: space-between;
-}
-
 .card-list {
   border: 2px dotted rgba(0, 0, 0, 0.26);
   padding: 10px;

@@ -8,11 +8,12 @@ import {BackendService} from './services/backend.service';
 import {IPackage} from './interfaces/IPackage';
 import {AsyncPipe, NgIf} from '@angular/common';
 import {debounceTime, Subject, Subscription} from 'rxjs';
+import {HeaderComponent} from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CardComponent, AsyncPipe, NgIf],
+  imports: [RouterOutlet, CardComponent, AsyncPipe, NgIf, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy{
   filterValue: string = '';
 
   constructor(private bs: BackendService) {
-    this.subscription$ = this.mouseOverSubject$.pipe(debounceTime(100)).subscribe(id => {
+    this.subscription$ = this.mouseOverSubject$.pipe(debounceTime(1500)).subscribe(id => {
       if (id) this.findDependencies(id);
     });
   }
@@ -58,7 +59,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
   filter($event: Event) {
     this.filterValue = ($event.target as HTMLInputElement).value.trim();
-    if (($event.target as HTMLInputElement).value) {
+    if (!this.filterValue) {
       this.packages = this.originalPackages;
     }
   }
