@@ -7,6 +7,7 @@
   min-width: 275px;
   max-width: 1650px;
   min-height: 200px;
+  overflow-y: scroll;
 }
 
 .card-list {
