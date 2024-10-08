@@ -32,10 +32,7 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    this.bs.getPackages().subscribe(data => {
-      this.packages = data;
-      this.originalPackages = JSON.parse(JSON.stringify(this.packages));
-    });
+    this.getPackages();
   }
 
   onMouseLeave() {
@@ -57,8 +54,15 @@ export class AppComponent implements OnInit, OnDestroy{
     });
   }
 
-  filter($event: Event) {
-    this.filterValue = ($event.target as HTMLInputElement).value.trim();
+  getPackages() {
+    this.bs.getPackages().subscribe(data => {
+      this.packages = data;
+      this.originalPackages = JSON.parse(JSON.stringify(this.packages));
+    });
+  }
+
+  filter(text: string) {
+    this.filterValue = text;
     if (!this.filterValue) {
       this.packages = this.originalPackages;
     }
