@@ -1,10 +1,12 @@
 <div class="wrapper">
     <app-header (filterValue)="filter($event)" (reload)="getPackages()"></app-header>
-  <div class="card-list">
-    @for (package of packages; track package.id; let i = $index) {
-      <ng-container *ngIf="isFiltered(package)">
-        <app-card [package]="package" (mouseenter)="onMouseEnter(package.id)" (mouseleave)="onMouseLeave()" [highlighted]="package.highlighted"></app-card>
-      </ng-container>
-    }
+  <div class="card-wrapper">
+    <div class="card-list">
+      @for (package of packages; track package.id; let i = $index) {
+        <ng-container *ngIf="isFiltered(package)">
+          <app-card [package]="package" (mouseenter)="onMouseEnter(package.id)" (mouseleave)="onMouseLeave()" [highlighted]="package.highlighted"></app-card>
+        </ng-container>
+      }
+      </div>
   </div>
 </div>

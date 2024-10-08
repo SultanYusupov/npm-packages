@@ -4,3 +4,13 @@ div {
   width: 200px;
   justify-content: space-between;
 }
+
+input {
+  padding-left: 3px;
+}
+
+@media screen and (max-width: 308px) {
+  div {
+    width: 275px;
+  }
+}
