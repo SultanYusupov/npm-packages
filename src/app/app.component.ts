@@ -63,7 +63,7 @@ export class AppComponent implements OnInit, OnDestroy{
       if (this.errorMessage) this.errorMessage = false;
       this.packages = data;
       this.bs.sync = false;
-    }, error => {
+    }, () => {
       this.bs.sync = false;
       this.errorMessage = true;
     });
