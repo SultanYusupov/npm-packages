@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, inject, Output, ViewChild} from '@angular/core';
 import {NgClass} from '@angular/common';
 import {BackendService} from '../../services/backend.service';
 
@@ -13,10 +13,9 @@ import {BackendService} from '../../services/backend.service';
 })
 export class HeaderComponent {
   @ViewChild('searchInput') searchInput!: ElementRef;
-  // @Input() sync: boolean = false;
   @Output() filterValue = new EventEmitter<string>();
   @Output() reload = new EventEmitter();
-  bs = inject(BackendService);
+  bs = inject(BackendService); // конструктор здесь не нужен, поэтому можно внедрять зависимости таким образом
 
   inputFilterValue($event: Event) {
     const text = ($event.target as HTMLInputElement).value.trim();
