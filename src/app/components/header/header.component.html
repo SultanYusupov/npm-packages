@@ -1,4 +1,4 @@
 <div>
   <input #searchInput type="search" placeholder="Поиск..." class="search" (input)="inputFilterValue($event)"/>
-  <i class="material-icons sync-icon" [style.cursor]="'pointer'" (click)="reloadPackages()">sync</i>
+  <i class="material-icons" [ngClass]="{'sync-icon': bs.sync}" (click)="reloadPackages()">sync</i>
 </div>

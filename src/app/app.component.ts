@@ -58,7 +58,9 @@ export class AppComponent implements OnInit, OnDestroy{
     this.bs.getPackages().subscribe(data => {
       this.packages = data;
       this.originalPackages = JSON.parse(JSON.stringify(this.packages));
+      this.bs.sync = false;
     });
+
   }
 
   filter(text: string) {

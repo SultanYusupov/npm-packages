@@ -8,6 +8,7 @@ import {IPackage} from '../interfaces/IPackage';
 export class BackendService {
 
   private URL: string = "http://localhost:3000";
+  sync: boolean = false;
   http = inject(HttpClient);
 
   getPackages() {
