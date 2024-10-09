@@ -1,5 +1,6 @@
 # NpmPackages
 
+This is an application for displaying data about npm packages.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
 
 ## Development server
