@@ -24,6 +24,7 @@ export class AppComponent implements OnInit, OnDestroy{
   private mouseOverSubject$ = new Subject<any>();
   private originalPackages: IPackage[] = [];
   filterValue: string = '';
+  errorMessage: boolean = false;
 
   constructor(private bs: BackendService) {
     this.subscription$ = this.mouseOverSubject$.pipe(debounceTime(1500)).subscribe(id => {
@@ -56,9 +57,13 @@ export class AppComponent implements OnInit, OnDestroy{
 
   getPackages() {
     this.bs.getPackages().subscribe(data => {
+      if (this.errorMessage) this.errorMessage = false;
       this.packages = data;
       this.originalPackages = JSON.parse(JSON.stringify(this.packages));
       this.bs.sync = false;
+    }, error => {
+      this.bs.sync = false;
+      this.errorMessage = true;
     });
 
   }

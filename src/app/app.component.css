@@ -20,3 +20,8 @@
 .search {
   padding-left: 2px;
 }
+
+.error-message {
+  color: #f11b1b;
+  margin-top: 10px;
+}
