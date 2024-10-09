@@ -22,7 +22,6 @@ export class AppComponent implements OnInit, OnDestroy{
   dependencies: string[] = [];
   private subscription$: Subscription;
   private mouseOverSubject$ = new Subject<any>();
-  private originalPackages: IPackage[] = [];
   filterValue: string = '';
   errorMessage: boolean = false;
 
@@ -38,7 +37,11 @@ export class AppComponent implements OnInit, OnDestroy{
 
   onMouseLeave() {
     // применение метода complete() и создание нового Subject не помогло
-    this.packages = JSON.parse(JSON.stringify(this.originalPackages));
+    this.packages.forEach((pkg) => {
+      if (pkg.highlighted) {
+        delete pkg.highlighted
+      }
+    });
     this.mouseOverSubject$.next('');
   }
 
@@ -59,7 +62,6 @@ export class AppComponent implements OnInit, OnDestroy{
     this.bs.getPackages().subscribe(data => {
       if (this.errorMessage) this.errorMessage = false;
       this.packages = data;
-      this.originalPackages = JSON.parse(JSON.stringify(this.packages));
       this.bs.sync = false;
     }, error => {
       this.bs.sync = false;
@@ -71,7 +73,7 @@ export class AppComponent implements OnInit, OnDestroy{
   filter(text: string) {
     this.filterValue = text;
     if (!this.filterValue) {
-      this.packages = this.originalPackages;
+      this.packages = [...this.packages]
     }
   }
 
