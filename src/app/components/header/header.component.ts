@@ -16,10 +16,15 @@ export class HeaderComponent {
   @Output() filterValue = new EventEmitter<string>();
   @Output() reload = new EventEmitter();
   bs = inject(BackendService); // конструктор здесь не нужен, поэтому можно внедрять зависимости таким образом
+  text: string = '';
+  idTimeout: NodeJS.Timeout | undefined = undefined;
 
   inputFilterValue($event: Event) {
-    const text = ($event.target as HTMLInputElement).value.trim();
-    this.filterValue.emit(text);
+    this.text = ($event.target as HTMLInputElement).value.trim();
+    clearTimeout(this.idTimeout);
+    this.idTimeout = setTimeout(() => {
+      this.filterValue.emit(this.text);
+    }, 1000);
   }
 
   reloadPackages() {
